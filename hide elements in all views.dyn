@@ -1,0 +1,149 @@
+<Workspace Version="1.2.0.2690" X="122.743906671869" Y="36.9457784395231" zoom="0.316244997634773" Name="Home" Description="" RunType="Manual" RunPeriod="1000" HasRunWithoutCrash="True">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Nodes.DSModelElementSelection guid="13ccf0ea-1dec-448d-934c-c45d54503430" type="Dynamo.Nodes.DSModelElementSelection" nickname="Select Model Element" x="411.589607530425" y="141.365461742658" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <instance id="9e5cfe6b-66f4-44e8-9714-5666c1b9ecf7-0004802d" />
+    </Dynamo.Nodes.DSModelElementSelection>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="43bc7038-b83c-40c9-aafd-e7aa35a7a9db" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="View.GetByType" x="53.5918094763632" y="669.266854401249" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="..\..\..\AppData\Roaming\Dynamo\Dynamo%20Revit\1.2\packages\archi-lab.net\bin\Archi-lab_Grimshaw.dll" function="Views.View.GetByType@string">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <archilabUI.ViewTypesUI guid="8bb2795e-6e93-4e54-87a1-912b2884ec7e" type="archilabUI.ViewTypesUI" nickname="View Type" x="-153.769354937314" y="667.91625792285" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false" index="9:FloorPlan" />
+    <CoreNodeModels.Input.BoolSelector guid="b8b800b5-5ad0-464a-bc55-aa14a1f77527" type="CoreNodeModels.Input.BoolSelector" nickname="Boolean" x="730.997902585476" y="681.914855610575" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <System.Boolean>True</System.Boolean>
+    </CoreNodeModels.Input.BoolSelector>
+    <CoreNodeModels.Watch guid="3dd4b61d-25ce-49de-8a02-ba83330e5aaa" type="CoreNodeModels.Watch" nickname="Watch" x="1295.11629638955" y="446.425178980416" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+    </CoreNodeModels.Watch>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="ab905240-1454-4eae-aae7-0d70443e7e31" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Document.Views" x="71.2591331876895" y="846.866317028399" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="True" />
+      <ID value="de43b934-e84a-4c0a-b298-06207ba545cd" />
+      <Name value="Document.Views" />
+      <Description value="Gets all views in the document - except for 3D view templates (as long as this bug is not fixed: https://github.com/DynamoDS/Dynamo/issues/2970)" />
+      <Inputs>
+        <Input value="toggle" />
+      </Inputs>
+      <Outputs>
+        <Output value="Views" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <CoreNodeModels.Input.BoolSelector guid="84de2b7f-0837-458e-8465-2a72a364fbe0" type="CoreNodeModels.Input.BoolSelector" nickname="Boolean" x="-88.2833587039031" y="864.293366706231" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <System.Boolean>True</System.Boolean>
+    </CoreNodeModels.Input.BoolSelector>
+    <CoreNodeModels.Watch guid="188e563b-e30a-4851-b9a0-a85e33e4b99c" type="CoreNodeModels.Watch" nickname="Watch" x="266.231125126183" y="955.787604826188" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+    </CoreNodeModels.Watch>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="3f25a883-91d9-476b-bfd5-93776fc8c284" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="View.HideElements" x="947.236859992938" y="234.19966410163" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <PortInfo index="2" default="True" />
+      <ID value="263032bc-6da5-4609-8053-d9637f0b73c0" />
+      <Name value="View.HideElements" />
+      <Description value="This node will hide elements in specified view." />
+      <Inputs>
+        <Input value="Element" />
+        <Input value="View" />
+        <Input value="RunIt" />
+      </Inputs>
+      <Outputs>
+        <Output value="OUT" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <PythonNodeModels.PythonNode guid="9b92d77c-b0cf-4183-9006-12ce85ceb41e" type="PythonNodeModels.PythonNode" nickname="Python Script" x="990.57947762906" y="451.136492341081" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="3">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <PortInfo index="2" default="False" />
+      <Script># Copyright(c) 2015, Konrad K Sobon
+# @arch_laboratory, http://archi-lab.net
+
+# Import Element wrapper extension methods
+import clr
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+doc = DocumentManager.Instance.CurrentDBDocument
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+import System
+from System.Collections.Generic import *
+
+import sys
+pyt_path = r'C:\Program Files (x86)\IronPython 2.7\Lib'
+sys.path.append(pyt_path)
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+def ProcessList(_func, _list):
+    return map( lambda x: ProcessList(_func, x) if type(x)==list else _func(x), _list )
+
+def ProcessListArg(_func, _list, _arg):
+    return map( lambda x: ProcessListArg(_func, x, _arg) if type(x)==list else _func(x, _arg), _list )
+
+def Unwrap(item):
+	return UnwrapElement(item)
+
+def HideElements(v, elements):
+	ids = List[ElementId]()
+	for i in elements:
+		if not i.IsHidden(v) and i.CanBeHidden(v):
+			ids.Add(i.Id)
+	v.HideElements(ids)
+	return None
+
+if isinstance(IN[0], list):
+	elements = ProcessList(Unwrap, IN[0])
+else:
+	elements = [Unwrap(IN[0])]
+
+if isinstance(IN[1], list):
+	views = ProcessList(Unwrap, IN[1])
+else:
+	views = [Unwrap(IN[1])]
+
+if IN[2]:
+	try:
+		errorReport = None
+		TransactionManager.Instance.EnsureInTransaction(doc)
+		ProcessListArg(HideElements, views, elements)
+		TransactionManager.Instance.TransactionTaskDone()
+	except:
+		# if error accurs anywhere in the process catch it
+		import traceback
+		errorReport = traceback.format_exc()
+else:
+	errorReport = "Set RunIt to True."
+
+#Assign your output to the OUT variable
+if errorReport == None:
+	OUT = 0
+else:
+	OUT = errorReport
+</Script>
+    </PythonNodeModels.PythonNode>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="13ccf0ea-1dec-448d-934c-c45d54503430" start_index="0" end="9b92d77c-b0cf-4183-9006-12ce85ceb41e" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="8bb2795e-6e93-4e54-87a1-912b2884ec7e" start_index="0" end="43bc7038-b83c-40c9-aafd-e7aa35a7a9db" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="b8b800b5-5ad0-464a-bc55-aa14a1f77527" start_index="0" end="9b92d77c-b0cf-4183-9006-12ce85ceb41e" end_index="2" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="ab905240-1454-4eae-aae7-0d70443e7e31" start_index="0" end="188e563b-e30a-4851-b9a0-a85e33e4b99c" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="ab905240-1454-4eae-aae7-0d70443e7e31" start_index="0" end="9b92d77c-b0cf-4183-9006-12ce85ceb41e" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="84de2b7f-0837-458e-8465-2a72a364fbe0" start_index="0" end="ab905240-1454-4eae-aae7-0d70443e7e31" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="9b92d77c-b0cf-4183-9006-12ce85ceb41e" start_index="0" end="3dd4b61d-25ce-49de-8a02-ba83330e5aaa" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>
